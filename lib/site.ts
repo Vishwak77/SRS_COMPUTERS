@@ -15,8 +15,10 @@ export const SITE = {
     line1: "1st Floor, Royal Enfield Showroom",
     line2: "Venkateshapuram, Perambalur, Tamil Nadu 621212",
     maps: "https://maps.app.goo.gl/1XavBddaEkbNcwbV6",
+    // Pins the actual business ("SRS COMPUTER & SERVICE") at its real
+    // coordinates, matching the Get Directions short link.
     mapsEmbed:
-      "https://www.google.com/maps?q=Royal+Enfield+Showroom+Venkateshapuram+Perambalur+621212&output=embed",
+      "https://www.google.com/maps?q=SRS+COMPUTER+%26+SERVICE,11.2347228,78.8770143&ll=11.2347228,78.8770143&z=17&output=embed",
   },
   hours: "Open all week · 10:00 AM – 9:00 PM",
 };
