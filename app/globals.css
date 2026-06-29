@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #5fd3e6;
+  --accent-deep: #34c5da;
+  --ink: #10171d;
+  --bg-top: #dfeef4;
+  --bg-mid: #eaf4f7;
+  --bg-bottom: #fbfdfd;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  color: var(--ink);
+  background: var(--bg-bottom);
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
+  }
+
+  /* Primary cyan pill button */
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill bg-accent px-5 py-2.5
+           text-[15px] font-semibold text-ink transition-all duration-300
+           hover:shadow-glow hover:brightness-105 active:scale-[0.98];
+  }
+
+  /* Secondary / ghost pill */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill bg-white px-5 py-2.5
+           text-[15px] font-semibold text-ink ring-1 ring-line transition-all duration-300
+           hover:bg-surface-card active:scale-[0.98];
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill bg-ink px-5 py-2.5
+           text-[15px] font-semibold text-white transition-all duration-300
+           hover:brightness-110 active:scale-[0.98];
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply text-sm font-medium uppercase tracking-[0.14em] text-muted-light;
+  }
+
+  /* Section heading */
+  .h-display {
+    @apply font-bold tracking-[-0.02em] text-ink;
+  }
+}
+
+/* Hide scrollbar for carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Frosted nav backdrop */
+.frosted {
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+}

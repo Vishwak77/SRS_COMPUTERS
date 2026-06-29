@@ -1,0 +1,23 @@
+# dependencies
+/node_modules
+
+# next.js build output
+/.next
+/out
+
+# misc
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# playwright test artifacts
+/.playwright-mcp
+
+# local-only reference / helper files (not part of the app)
+/Recording*.mp4
+/products_list.txt
+/images
+
+# stray screenshots in the project root (gallery/product images live under /public)
+/*.jpeg
+/*.jpg
