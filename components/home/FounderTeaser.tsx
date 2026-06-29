@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Quote } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { SITE } from "@/lib/site";
@@ -36,11 +37,17 @@ export default function FounderTeaser() {
               </Link>
             </div>
 
-            {/* Portrait placeholder */}
-            <div className="relative min-h-[280px] bg-gradient-to-br from-surface-sky to-surface-mint">
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="grid h-32 w-32 place-items-center rounded-full bg-white/70 text-[40px] font-extrabold text-ink/30 shadow-soft frosted">
-                  RC
+            {/* Founder portrait */}
+            <div className="relative min-h-[300px] bg-gradient-to-br from-surface-sky to-surface-mint">
+              <div className="absolute inset-0 grid place-items-center p-8">
+                <div className="relative h-40 w-40 overflow-hidden rounded-full bg-white shadow-card ring-4 ring-white">
+                  <Image
+                    src="/founder.jpeg"
+                    alt={`${SITE.founder}, founder of SRS Computers`}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
                 </div>
               </div>
               <div className="absolute bottom-4 left-4 rounded-pill bg-white/80 px-3 py-1.5 text-[12.5px] font-medium text-ink shadow-sm frosted">

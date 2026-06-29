@@ -14,7 +14,7 @@ export const SITE = {
   address: {
     line1: "1st Floor, Royal Enfield Showroom",
     line2: "Venkateshapuram, Perambalur, Tamil Nadu 621212",
-    maps: "https://www.google.com/maps/search/?api=1&query=Royal+Enfield+Showroom+Venkateshapuram+Perambalur+621212",
+    maps: "https://maps.app.goo.gl/1XavBddaEkbNcwbV6",
     mapsEmbed:
       "https://www.google.com/maps?q=Royal+Enfield+Showroom+Venkateshapuram+Perambalur+621212&output=embed",
   },

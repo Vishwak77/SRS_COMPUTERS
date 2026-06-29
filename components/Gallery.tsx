@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 
-// Real in-store photos from public/gallery (store-01 … store-11).
-const PHOTOS = Array.from({ length: 11 }, (_, i) => ({
+// Real in-store photos from public/gallery (store-01 … store-10).
+const PHOTOS = Array.from({ length: 10 }, (_, i) => ({
   src: `/gallery/store-${String(i + 1).padStart(2, "0")}.jpeg`,
   alt: `Inside SRS Computers, Perambalur — shelf ${i + 1}`,
 }));
@@ -12,7 +12,7 @@ const PHOTOS = Array.from({ length: 11 }, (_, i) => ({
 // Masonry-ish spans for visual rhythm (mirrors the reference's collage gallery).
 const SPANS = [
   "row-span-2", "", "", "row-span-2", "", "row-span-2",
-  "", "", "row-span-2", "", "",
+  "", "", "row-span-2", "",
 ];
 
 export default function Gallery() {

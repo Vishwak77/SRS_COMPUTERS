@@ -105,14 +105,14 @@ export default function OfferPopup() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.beginPath();
-    ctx.arc(x, y, 36, 0, Math.PI * 2);
+    ctx.arc(x, y, 46, 0, Math.PI * 2);
     ctx.fill();
     // measure cleared %
     const { width, height } = canvas;
     const data = ctx.getImageData(0, 0, width, height).data;
     let cleared = 0;
     for (let i = 3; i < data.length; i += 64) if (data[i] === 0) cleared++;
-    if (cleared / (data.length / 64) > 0.35) doReveal();
+    if (cleared / (data.length / 64) > 0.22) doReveal();
   };
 
   return (
@@ -192,17 +192,45 @@ export default function OfferPopup() {
 
               {/* Reveal zone */}
               <div className="relative px-6 py-6">
-                <div className="relative h-44 overflow-hidden rounded-card border border-line bg-gradient-to-br from-accent-glow/40 to-surface-mint">
-                  {/* The offer underneath */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center">
-                    <Sparkles className="h-6 w-6 text-accent-deep" />
-                    <p className="mt-2 text-[19px] font-extrabold leading-tight text-ink">
-                      Special in-store deals this week
-                    </p>
-                    <p className="mt-1 text-[13.5px] text-muted">
-                      Visit our Perambalur showroom to unlock the best prices on
-                      laptops, CCTV &amp; accessories.
-                    </p>
+                <motion.div
+                  animate={
+                    revealed
+                      ? { scale: [1, 1.04, 1] }
+                      : { scale: 1 }
+                  }
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative h-48 overflow-hidden rounded-card shadow-card"
+                >
+                  {/* The premium "ticket" offer underneath */}
+                  <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_0%_0%,#1E555F_0%,#0E2E34_55%,#0a2025_100%)]">
+                    {/* soft accent glow + shine */}
+                    <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-accent/30 blur-3xl" />
+                    <div className="absolute -bottom-12 -left-8 h-36 w-36 rounded-full bg-accent-deep/25 blur-3xl" />
+                    {revealed && (
+                      <motion.div
+                        initial={{ x: "-120%" }}
+                        animate={{ x: "160%" }}
+                        transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
+                        className="absolute inset-y-0 w-1/3 -skew-x-12 bg-white/15"
+                      />
+                    )}
+                    {/* perforated ticket edge */}
+                    <div className="absolute left-0 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+                    <div className="absolute right-0 top-1/2 h-5 w-5 translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+
+                    <div className="relative flex h-full flex-col items-center justify-center px-7 text-center">
+                      <span className="inline-flex items-center gap-1.5 rounded-pill bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-ink shadow-glow">
+                        <Sparkles className="h-3.5 w-3.5" /> Exclusive
+                      </span>
+                      <p className="mt-3 text-[21px] font-extrabold leading-tight text-white">
+                        Special in-store deals
+                        <br /> this week
+                      </p>
+                      <p className="mt-1.5 text-[12.5px] leading-snug text-white/70">
+                        Best prices on laptops, CCTV &amp; accessories — unlocked
+                        when you visit us in Perambalur.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Scratch canvas overlay */}
@@ -221,7 +249,7 @@ export default function OfferPopup() {
                       onPointerLeave={() => (scratching.current = false)}
                     />
                   )}
-                </div>
+                </motion.div>
 
                 {/* Tap-to-reveal shortcut for touch users */}
                 {!revealed && (

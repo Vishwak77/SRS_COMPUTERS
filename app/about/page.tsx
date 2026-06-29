@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import FinalCTA from "@/components/home/FinalCTA";
@@ -52,11 +53,20 @@ export default function AboutPage() {
       <section className="relative py-16 sm:py-20">
         <div className="container-x">
           <Reveal className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2">
-            <div className="overflow-hidden rounded-xl2 border border-white/70 bg-gradient-to-br from-surface-sky to-surface-mint shadow-soft">
-              <div className="grid min-h-[320px] place-items-center">
-                <div className="grid h-36 w-36 place-items-center rounded-full bg-white/70 text-[44px] font-extrabold text-ink/30 shadow-soft frosted">
-                  SRS
+            <div className="relative overflow-hidden rounded-xl2 border border-white/70 bg-gradient-to-br from-surface-sky to-surface-mint shadow-soft">
+              <div className="grid min-h-[340px] place-items-center p-8">
+                <div className="relative h-48 w-48 overflow-hidden rounded-full bg-white shadow-card ring-4 ring-white">
+                  <Image
+                    src="/founder.jpeg"
+                    alt="R C Ramalingam, founder of SRS Computers"
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
                 </div>
+              </div>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-pill bg-white/85 px-4 py-1.5 text-center text-[13px] font-semibold text-ink shadow-sm frosted">
+                R C Ramalingam · Founder
               </div>
             </div>
             <div className="flex flex-col justify-center">
