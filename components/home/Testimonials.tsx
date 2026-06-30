@@ -36,8 +36,8 @@ export default function Testimonials() {
               <p className="mt-4 text-[16.5px] leading-relaxed text-ink/90">
                 “{t.quote}”
               </p>
-              <div className="mt-6 flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-surface-sky to-surface-mint text-[14px] font-bold text-ink/70">
+              <div className="mt-6 flex items-center gap-4">
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-to-br from-surface-sky to-surface-mint text-[18px] font-bold text-ink/70">
                   {t.initials}
                 </div>
                 <div>

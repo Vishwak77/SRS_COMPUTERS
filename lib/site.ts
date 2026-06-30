@@ -36,18 +36,21 @@ export const NAV_LINKS = [
 export const PRODUCT_MENU = [
   [
     { label: "Laptops", desc: "Home, work & gaming", cat: "laptops" },
+    { label: "Monitors", desc: "FHD screens for every desk", cat: "monitors" },
     { label: "Desktops", desc: "Custom & branded builds", cat: "desktops" },
-    { label: "Printers & Ink", desc: "Inkjet, laser & ink-tank", cat: "printers" },
+    { label: "PC Components", desc: "RAM, CPUs, motherboards & GPUs", cat: "components" },
   ],
   [
+    { label: "Printers", desc: "Inkjet, laser & ink-tank", cat: "printers" },
+    { label: "Ink & Toner", desc: "Cartridges & refill bottles", cat: "ink" },
     { label: "CCTV & Security", desc: "Cameras, DVR & installation", cat: "cctv" },
     { label: "Networking", desc: "Routers, switches & Wi-Fi", cat: "networking" },
-    { label: "Storage", desc: "SSD, HDD & pen drives", cat: "storage" },
   ],
   [
+    { label: "Storage", desc: "SSD, HDD & pen drives", cat: "storage" },
     { label: "Accessories", desc: "Keyboards, mice & more", cat: "accessories" },
     { label: "UPS & Power", desc: "Backup & stabilizers", cat: "power" },
-    { label: "All products", desc: "Browse the full range", cat: "all" },
+    { label: "Biometric & Scanners", desc: "Fingerprint, barcode & more", cat: "biometric" },
   ],
 ];
 

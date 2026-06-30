@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
 import { CATEGORIES, type Product } from "@/lib/catalogue";
 import ProductCard from "./ProductCard";
 import ProductModal from "./ProductModal";
@@ -14,18 +15,96 @@ export default function BrowseProducts() {
   const [active, setActive] = useState<string>("all");
   const [selected, setSelected] = useState<{ product: Product; cat: string } | null>(null);
 
+  const searchQuery = params.get("search") ?? "";
+
   // Deep-link support: /products?cat=cctv activates that filter.
   useEffect(() => {
     const cat = params.get("cat");
     if (cat && VALID.has(cat)) setActive(cat);
   }, [params]);
 
+  const totalCount = CATEGORIES.reduce((n, c) => n + c.products.length, 0);
+
+  // Cross-category search results
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return null;
+    const q = searchQuery.toLowerCase();
+    const hits: { product: Product; catLabel: string; catKey: string }[] = [];
+    for (const cat of CATEGORIES) {
+      for (const p of cat.products) {
+        if (
+          p.name.toLowerCase().includes(q) ||
+          p.brand.toLowerCase().includes(q) ||
+          p.desc.toLowerCase().includes(q)
+        ) {
+          hits.push({ product: p, catLabel: cat.label, catKey: cat.key });
+        }
+      }
+    }
+    return hits;
+  }, [searchQuery]);
+
   const visible =
     active === "all"
       ? CATEGORIES
       : CATEGORIES.filter((c) => c.key === active);
 
-  const totalCount = CATEGORIES.reduce((n, c) => n + c.products.length, 0);
+  if (searchResults) {
+    return (
+      <div>
+        {/* Search results header */}
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted-light">
+              Search results
+            </p>
+            <h2 className="mt-1 text-[26px] font-extrabold tracking-[-0.01em] text-ink sm:text-[32px]">
+              {searchResults.length} result{searchResults.length !== 1 ? "s" : ""} for &ldquo;{searchQuery}&rdquo;
+            </h2>
+          </div>
+          <a
+            href="/products"
+            className="inline-flex items-center gap-1.5 rounded-pill border border-line bg-white px-4 py-2 text-[13.5px] font-semibold text-ink shadow-sm transition-all hover:bg-surface-card"
+          >
+            <X className="h-3.5 w-3.5" /> Clear search
+          </a>
+        </div>
+
+        {searchResults.length === 0 ? (
+          <div className="py-20 text-center text-muted">
+            <p className="text-[18px] font-semibold text-ink">No products found</p>
+            <p className="mt-2 text-[15px]">Try a different search term or browse by category below.</p>
+            <a href="/products" className="btn-dark mt-6 inline-flex">Browse all products</a>
+          </div>
+        ) : (
+          <AnimatePresence mode="popLayout">
+            <motion.div layout className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+              {searchResults.map(({ product: p, catLabel, catKey }, i) => (
+                <motion.div
+                  key={p.name + p.brand + catKey}
+                  layout
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (i % 4) * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <ProductCard
+                    product={p}
+                    onClick={() => setSelected({ product: p, cat: catLabel })}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        <ProductModal
+          product={selected?.product ?? null}
+          categoryLabel={selected?.cat}
+          onClose={() => setSelected(null)}
+        />
+      </div>
+    );
+  }
 
   return (
     <div>

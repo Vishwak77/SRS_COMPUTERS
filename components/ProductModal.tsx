@@ -104,7 +104,7 @@ export default function ProductModal({
             </div>
 
             {/* Details side */}
-            <div className="flex flex-col p-6 sm:p-8">
+            <div className="flex flex-col overflow-y-auto p-6 sm:p-8" style={{ maxHeight: "90vh" }}>
               {categoryLabel && (
                 <span className="text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-deep">
                   {categoryLabel}
@@ -119,6 +119,20 @@ export default function ProductModal({
               <p className="mt-3 text-[15.5px] leading-relaxed text-muted">
                 {product.desc}
               </p>
+
+              {/* Specs grid */}
+              {product.specs && product.specs.length > 0 && (
+                <div className="mt-5 border-t border-line pt-4">
+                  <div className="grid grid-cols-1 gap-y-1.5">
+                    {product.specs.map((s) => (
+                      <div key={s.label} className="flex items-start gap-2 rounded-lg bg-surface-card px-3 py-2">
+                        <span className="min-w-[108px] shrink-0 text-[11.5px] font-semibold uppercase tracking-[0.06em] text-muted">{s.label}</span>
+                        <span className="text-[13px] leading-snug text-ink">{s.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Trust chips */}
               <div className="mt-5 flex flex-wrap gap-2">
