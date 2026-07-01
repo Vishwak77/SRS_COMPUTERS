@@ -5,7 +5,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundGradient from "@/components/BackgroundGradient";
-import OfferPopup from "@/components/OfferPopup";
 import ScrollProgress from "@/components/ScrollProgress";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
@@ -37,7 +36,6 @@ export default function RootLayout({
           <main className="relative z-10">{children}</main>
           <Footer />
           <FloatingWhatsApp />
-          <OfferPopup />
         </SmoothScroll>
       </body>
     </html>
