@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import { useLenis } from "lenis/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { CATEGORIES, type Product } from "@/lib/catalogue";
@@ -17,11 +18,48 @@ export default function BrowseProducts() {
 
   const searchQuery = params.get("search") ?? "";
 
+  // Lenis owns scrolling (root), so scroll through its instance. Keep the latest
+  // instance in a ref so the scroll effect can depend only on `active`.
+  const lenis = useLenis();
+  const lenisRef = useRef(lenis);
+  lenisRef.current = lenis;
+  const firstRun = useRef(true);
+
   // Deep-link support: /products?cat=cctv activates that filter.
   useEffect(() => {
     const cat = params.get("cat");
     if (cat && VALID.has(cat)) setActive(cat);
   }, [params]);
+
+  // When the category changes (filter pill, nav menu, or a /products?cat= link),
+  // bring the top of the selected section into view instead of leaving the user
+  // stranded wherever they were scrolled. Skip the initial mount so a plain
+  // /products visit is left at the top naturally.
+  useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
+    const l = lenisRef.current;
+    // Gap below the sticky nav + filter bar (matches the sections' scroll-mt-40).
+    const GAP = 150;
+    // Let the filtered list settle (sections unmount) before measuring so the
+    // target section lands right under the sticky filter bar.
+    const t = setTimeout(() => {
+      if (active === "all") {
+        if (l) l.scrollTo(0);
+        else window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      const el = document.getElementById(active);
+      if (!el) return;
+      // Absolute document position — reliable regardless of offset-parent.
+      const y = Math.max(0, el.getBoundingClientRect().top + window.scrollY - GAP);
+      if (l) l.scrollTo(y);
+      else window.scrollTo({ top: y, behavior: "smooth" });
+    }, 120);
+    return () => clearTimeout(t);
+  }, [active]);
 
   const totalCount = CATEGORIES.reduce((n, c) => n + c.products.length, 0);
 

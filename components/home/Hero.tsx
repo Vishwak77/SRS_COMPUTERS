@@ -189,10 +189,7 @@ export default function Hero() {
               )}
             </div>
             <div className="flex items-center justify-between gap-2 px-1 pb-1">
-              <span className="px-2 text-[12.5px] text-muted-light">
-                We&apos;ll help you find it in-store
-              </span>
-              <button onClick={handleSearch} className="btn-dark">
+              <button onClick={handleSearch} className="btn-dark ml-auto">
                 Search <ArrowRight className="h-4 w-4" />
               </button>
             </div>
