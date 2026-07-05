@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import PageHero from "@/components/PageHero";
 import BrowseProducts from "@/components/BrowseProducts";
+import HashScroll from "@/components/HashScroll";
 import Gallery from "@/components/Gallery";
 import LogoMarquee from "@/components/home/LogoMarquee";
 import FinalCTA from "@/components/home/FinalCTA";
@@ -14,6 +15,9 @@ export const metadata = {
 export default function ProductsPage() {
   return (
     <>
+      {/* Scroll to #brands (or any hash) since Lenis overrides native anchors. */}
+      <HashScroll offset={-96} />
+
       <PageHero
         eyebrow="Browse our range"
         title={

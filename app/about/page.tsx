@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import ScrollIntoViewOnMount from "@/components/ScrollIntoViewOnMount";
 import FinalCTA from "@/components/home/FinalCTA";
 import Stats from "@/components/home/Stats";
 import { Heart, Handshake, Wrench, MapPin } from "lucide-react";
@@ -38,6 +39,9 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
+      {/* On redirect, land on the founder story so the photo is fully visible. */}
+      <ScrollIntoViewOnMount targetId="story" offset={-96} />
+
       <PageHero
         eyebrow="Our story"
         title={
@@ -50,7 +54,7 @@ export default function AboutPage() {
       />
 
       {/* Story + portrait */}
-      <section className="relative py-16 sm:py-20">
+      <section id="story" className="relative scroll-mt-28 py-16 sm:py-20">
         <div className="container-x">
           <Reveal className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2">
             <div className="relative overflow-hidden rounded-xl2 border border-white/70 bg-gradient-to-br from-surface-sky to-surface-mint shadow-soft">
