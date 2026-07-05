@@ -27,7 +27,7 @@ export const NAV_LINKS = [
   { label: "Products", href: "/products", hasMenu: true },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Brands", href: "/products#brands" },
+  { label: "Brands", href: "/brands" },
   { label: "Visit Us", href: "/contact" },
 ];
 

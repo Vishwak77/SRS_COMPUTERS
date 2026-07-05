@@ -9,14 +9,14 @@ export default function BackgroundGradient() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #dceef4 0%, #e9f4f7 28%, #f4fafb 55%, #fbfdfd 100%)",
+            "linear-gradient(180deg, #a9e0f2 0%, #cbeef7 28%, #e6f7fb 58%, #fbfdfd 100%)",
         }}
       />
 
       {/* Soft drifting cloud / aurora blobs */}
-      <div className="absolute -left-40 top-[-10%] h-[55vh] w-[55vh] rounded-full bg-accent-glow/40 blur-[120px] animate-gradient-drift" />
+      <div className="absolute -left-40 top-[-10%] h-[55vh] w-[55vh] rounded-full bg-accent-glow/75 blur-[120px] animate-gradient-drift" />
       <div
-        className="absolute right-[-15%] top-[5%] h-[50vh] w-[50vh] rounded-full bg-[#cfeef8]/50 blur-[130px] animate-gradient-drift"
+        className="absolute right-[-15%] top-[5%] h-[50vh] w-[50vh] rounded-full bg-[#8fdcf2]/70 blur-[130px] animate-gradient-drift"
         style={{ animationDelay: "-6s" }}
       />
       <div
