@@ -78,3 +78,9 @@
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz'
  GET / 200 in 918ms
  GET / 200 in 158ms
+ ✓ Compiled in 4.4s (707 modules)
+ ✓ Compiled in 685ms (707 modules)
+ ✓ Compiled in 5.1s (1462 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ✓ Compiled in 1260ms (1472 modules)
+[?25h

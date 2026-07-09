@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="container-x pt-3">
           <motion.nav
             onMouseLeave={() => setMenuOpen(false)}
-            className={`relative mx-auto flex items-center justify-between rounded-pill border border-white/60 px-3 py-2 pl-4 transition-all duration-300 ${
+            className={`relative mx-auto flex items-center justify-between rounded-pill border border-white/60 px-2.5 py-2 pl-3 transition-all duration-300 sm:px-3 sm:pl-4 ${
               scrolled
                 ? "frosted bg-white/70 shadow-nav"
                 : "bg-white/85 shadow-nav"
@@ -129,7 +129,7 @@ export default function Navbar() {
             </ul>
 
             {/* Right CTAs */}
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
               {/* Nav pill is width-capped by container-x, so this can't grow at
                   wider viewports — 6 links + CTA leave no slack. */}
               <SearchBar className="hidden w-[150px] xl:block" />
@@ -139,7 +139,12 @@ export default function Navbar() {
               >
                 <Phone className="h-4 w-4" /> Call
               </a>
-              <Link href="/contact" className="btn-accent whitespace-nowrap">
+              <Link
+                href="/contact"
+                /* Compact on narrow phones (320px) so the menu button stays on
+                   screen; full size from sm up. */
+                className="btn-accent whitespace-nowrap px-3 py-2 text-[13.5px] sm:px-5 sm:py-2.5 sm:text-[15px]"
+              >
                 {/* Wide wordmark leaves no room for the full label on phones. */}
                 <span className="sm:hidden">Directions</span>
                 <span className="hidden sm:inline">Get Directions</span>
@@ -147,7 +152,7 @@ export default function Navbar() {
               {/* Mobile toggle */}
               <button
                 onClick={() => setMobileOpen((v) => !v)}
-                className="grid h-9 w-9 place-items-center rounded-pill ring-1 ring-line lg:hidden"
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-pill ring-1 ring-line sm:h-9 sm:w-9 lg:hidden"
                 aria-label="Menu"
               >
                 <span className="space-y-1">
