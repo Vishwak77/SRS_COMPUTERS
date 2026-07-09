@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --accent: #00d4f0;
-  --accent-deep: #00b8d9;
+  --accent: #ff6a00;
+  --accent-deep: #e0570a;
   --ink: #10171d;
-  --bg-top: #c8eaf5;
-  --bg-mid: #daf2f8;
-  --bg-bottom: #f4fbfe;
+  --bg-top: #ffdcbe;
+  --bg-mid: #ffecd8;
+  --bg-bottom: #fff8f1;
 }
 
 * {
@@ -43,7 +43,7 @@ html.lenis body {
     @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
   }
 
-  /* Primary cyan pill button */
+  /* Primary orange pill button */
   .btn-accent {
     @apply inline-flex items-center justify-center gap-2 rounded-pill bg-accent px-5 py-2.5
            text-[15px] font-semibold text-ink transition-all duration-300

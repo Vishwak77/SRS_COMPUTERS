@@ -4,23 +4,23 @@ export default function BackgroundGradient() {
       aria-hidden
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      {/* Base vertical wash: pale sky-blue at top fading to near-white */}
+      {/* Base vertical wash: warm peach at top fading to near-white */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #a9e0f2 0%, #cbeef7 28%, #e6f7fb 58%, #fbfdfd 100%)",
+            "linear-gradient(180deg, #ffd2ac 0%, #ffe4c8 28%, #fff2e4 58%, #fffdfa 100%)",
         }}
       />
 
       {/* Soft drifting cloud / aurora blobs */}
       <div className="absolute -left-40 top-[-10%] h-[55vh] w-[55vh] rounded-full bg-accent-glow/75 blur-[120px] animate-gradient-drift" />
       <div
-        className="absolute right-[-15%] top-[5%] h-[50vh] w-[50vh] rounded-full bg-[#8fdcf2]/70 blur-[130px] animate-gradient-drift"
+        className="absolute right-[-15%] top-[5%] h-[50vh] w-[50vh] rounded-full bg-[#ffc48f]/70 blur-[130px] animate-gradient-drift"
         style={{ animationDelay: "-6s" }}
       />
       <div
-        className="absolute left-1/2 top-[30%] h-[45vh] w-[60vh] -translate-x-1/2 rounded-full bg-[#e6f7ef]/40 blur-[140px] animate-gradient-drift"
+        className="absolute left-1/2 top-[30%] h-[45vh] w-[60vh] -translate-x-1/2 rounded-full bg-[#ffe9d6]/45 blur-[140px] animate-gradient-drift"
         style={{ animationDelay: "-11s" }}
       />
 

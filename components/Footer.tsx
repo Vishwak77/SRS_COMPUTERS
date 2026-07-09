@@ -77,10 +77,10 @@ export default function Footer() {
             © {new Date().getFullYear()} {SITE.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-3">
-            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white shadow-sm transition-transform hover:-translate-y-0.5" aria-label="Instagram">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white shadow-sm transition-transform hover:-translate-y-0.5" aria-label="Instagram">
               <Instagram className="h-4 w-4 text-ink" />
             </a>
-            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white shadow-sm transition-transform hover:-translate-y-0.5" aria-label="Facebook">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white shadow-sm transition-transform hover:-translate-y-0.5" aria-label="Facebook">
               <Facebook className="h-4 w-4 text-ink" />
             </a>
             <span className="ml-2 text-[12.5px] font-semibold uppercase tracking-[0.1em] text-muted-light">

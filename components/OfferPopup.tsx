@@ -9,7 +9,7 @@ const STORAGE_KEY = "srs-offer-seen-v1";
 
 /* Lightweight confetti burst (no dependency). */
 function confettiBurst(host: HTMLElement) {
-  const colors = ["#5FD3E6", "#34C5DA", "#FFC93C", "#34C759", "#7C5CFB"];
+  const colors = ["#FF6A00", "#FF9A4D", "#FFC93C", "#34C759", "#7C5CFB"];
   for (let i = 0; i < 36; i++) {
     const piece = document.createElement("span");
     const size = 6 + Math.random() * 6;
@@ -81,9 +81,9 @@ export default function OfferPopup() {
     const h = (canvas.height = canvas.offsetHeight * 2);
     // gradient foil
     const g = ctx.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, "#1E555F");
-    g.addColorStop(0.5, "#34C5DA");
-    g.addColorStop(1, "#1E555F");
+    g.addColorStop(0, "#7C3A12");
+    g.addColorStop(0.5, "#FF9A4D");
+    g.addColorStop(1, "#7C3A12");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
     // sparkle text
@@ -202,7 +202,7 @@ export default function OfferPopup() {
                   className="relative h-48 overflow-hidden rounded-card shadow-card"
                 >
                   {/* The premium "ticket" offer underneath */}
-                  <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_0%_0%,#1E555F_0%,#0E2E34_55%,#0a2025_100%)]">
+                  <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_0%_0%,#7C3A12_0%,#4A2109_55%,#2A1206_100%)]">
                     {/* soft accent glow + shine */}
                     <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-accent/30 blur-3xl" />
                     <div className="absolute -bottom-12 -left-8 h-36 w-36 rounded-full bg-accent-deep/25 blur-3xl" />

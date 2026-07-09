@@ -1,0 +1,80 @@
+
+> srs-computers@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1911ms
+ ○ Compiling /products ...
+ ✓ Compiled /products in 5.9s (1406 modules)
+ GET /products?cat=laptops 200 in 6359ms
+ GET /products?cat=laptops 200 in 144ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1157ms (1449 modules)
+ GET / 200 in 1502ms
+ ✓ Compiled /services in 359ms (1443 modules)
+ ○ Compiling /about ...
+ ✓ Compiled /about in 505ms (1454 modules)
+ ✓ Compiled /contact in 403ms (1469 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 563ms (1466 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 903ms
+ ✓ Compiled /services in 183ms (783 modules)
+ ○ Compiling /brands ...
+ ✓ Compiled /brands in 890ms (1476 modules)
+ ✓ Compiled in 1156ms (704 modules)
+ ✓ Compiled in 1456ms (1482 modules)
+ ✓ Compiled in 770ms (1485 modules)
+ ✓ Compiled in 1474ms (1485 modules)
+ ✓ Compiled in 1029ms (1485 modules)
+ ✓ Compiled in 703ms (1485 modules)
+ ✓ Compiled in 633ms (1485 modules)
+ ✓ Compiled in 637ms (1485 modules)
+ ✓ Compiled in 751ms (705 modules)
+ ✓ Compiled in 478ms (705 modules)
+ ✓ Compiled in 1611ms (1485 modules)
+ ✓ Compiled in 857ms (1489 modules)
+ ✓ Compiled in 486ms (1489 modules)
+ ✓ Compiled in 883ms (1489 modules)
+ ✓ Compiled in 904ms (1489 modules)
+ ✓ Compiled in 1134ms (1488 modules)
+ ✓ Compiled in 495ms (1488 modules)
+ ✓ Compiled in 1037ms (1488 modules)
+ ✓ Compiled in 1519ms (1488 modules)
+ ✓ Compiled in 645ms (1488 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 1301ms (1488 modules)
+ ✓ Compiled in 599ms (1488 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 902ms (1488 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 1195ms (1488 modules)
+ ✓ Compiled in 760ms (1488 modules)
+ ✓ Compiled in 1564ms (1488 modules)
+ ✓ Compiled in 1247ms (1488 modules)
+ ✓ Compiled in 978ms (1488 modules)
+ ✓ Compiled in 644ms (1488 modules)
+ ✓ Compiled in 905ms (1488 modules)
+ ✓ Compiled in 725ms (707 modules)
+ ✓ Compiled in 1072ms (1474 modules)
+ ✓ Compiled in 473ms (1474 modules)
+ ✓ Compiled in 983ms (1488 modules)
+ ✓ Compiled in 1012ms (1488 modules)
+ ✓ Compiled in 1696ms (1488 modules)
+ ✓ Compiled in 1242ms (1488 modules)
+ ✓ Compiled in 644ms (707 modules)
+ ✓ Compiled in 419ms (707 modules)
+ ✓ Compiled in 391ms (707 modules)
+ ✓ Compiled in 1836ms (1488 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\4.pack.gz_' -> 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\4.pack.gz'
+ ✓ Compiled in 857ms (1488 modules)
+ ✓ Compiled in 514ms (707 modules)
+ ✓ Compiled in 1064ms (1488 modules)
+ ✓ Compiled in 1256ms (1488 modules)
+ ✓ Compiled in 1283ms (1488 modules)
+ ✓ Compiled in 2.5s (1488 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\vishw\OneDrive\Desktop\SRS\srs-computers\.next\cache\webpack\client-development\0.pack.gz'
+ GET / 200 in 918ms
+ GET / 200 in 158ms

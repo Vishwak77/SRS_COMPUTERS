@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Cpu, Camera, Printer, Wrench, Wifi } from "lucide-react";
+import { Cpu, Camera, Printer, Wrench, Wifi, ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const TABS = [
@@ -131,6 +132,10 @@ export default function FeatureCarousel() {
                       </li>
                     ))}
                   </ul>
+                  <Link href={tab.href} className="btn-dark mt-7 w-fit">
+                    {tab.key === "Service" ? "See our services" : `Browse ${tab.key}`}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
 
                 {/* Right: real product visual */}

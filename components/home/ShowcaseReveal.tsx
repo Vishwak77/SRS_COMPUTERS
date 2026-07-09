@@ -66,15 +66,18 @@ export default function ShowcaseReveal() {
               >
                 <Link href={p.href} className="block">
                   <div
-                    className={`mb-3 grid h-28 place-items-center overflow-hidden rounded-xl ${p.tint}`}
+                    className={`mb-3 flex h-28 items-center justify-center overflow-hidden rounded-xl p-2 ${p.tint}`}
                   >
+                    {/* Flex, not grid: an auto-sized grid row grew to the
+                        image's intrinsic height, so percentage heights on the
+                        image resolved against itself and it overflowed. */}
                     <Image
                       src={p.image}
                       alt={p.name}
                       width={160}
                       height={120}
                       unoptimized
-                      className="max-h-[88%] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                      className="h-full w-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="text-[14.5px] font-semibold text-ink">

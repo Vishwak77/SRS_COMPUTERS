@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Phone, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 import { NAV_LINKS, PRODUCT_MENU, SITE } from "@/lib/site";
 
 export default function Navbar() {
@@ -47,8 +48,9 @@ export default function Navbar() {
           >
             <Logo />
 
-            {/* Center links */}
-            <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
+            {/* Center links — in-flow (not absolutely centered) so the search
+                field in the right group can't overlap them. */}
+            <ul className="hidden flex-1 items-center justify-center gap-1 lg:flex">
               {NAV_LINKS.map((link) => (
                 <li
                   key={link.label}
@@ -57,7 +59,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`inline-flex items-center gap-1 rounded-pill px-3.5 py-1.5 text-[15px] font-medium transition-colors hover:bg-ink/[0.04] hover:text-ink ${
+                    className={`inline-flex items-center gap-1 whitespace-nowrap rounded-pill px-2.5 py-1.5 text-[14.5px] font-medium transition-colors hover:bg-ink/[0.04] hover:text-ink xl:px-3 ${
                       link.hasMenu && menuOpen ? "bg-ink/[0.04] text-ink" : "text-ink/80"
                     }`}
                   >
@@ -128,14 +130,19 @@ export default function Navbar() {
 
             {/* Right CTAs */}
             <div className="flex items-center gap-2">
+              {/* Nav pill is width-capped by container-x, so this can't grow at
+                  wider viewports — 6 links + CTA leave no slack. */}
+              <SearchBar className="hidden w-[150px] xl:block" />
               <a
                 href={`tel:${SITE.phone}`}
                 className="hidden items-center gap-2 rounded-pill px-3.5 py-2 text-[15px] font-semibold text-ink/80 transition-colors hover:bg-ink/[0.04] sm:inline-flex"
               >
                 <Phone className="h-4 w-4" /> Call
               </a>
-              <Link href="/contact" className="btn-accent">
-                Get Directions
+              <Link href="/contact" className="btn-accent whitespace-nowrap">
+                {/* Wide wordmark leaves no room for the full label on phones. */}
+                <span className="sm:hidden">Directions</span>
+                <span className="hidden sm:inline">Get Directions</span>
               </Link>
               {/* Mobile toggle */}
               <button
@@ -171,6 +178,7 @@ export default function Navbar() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="rounded-card bg-white p-4 shadow-card">
+                <SearchBar className="mb-3" />
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.label}

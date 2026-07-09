@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useRef, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MapPin, Search, Star, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, MapPin, Star } from "lucide-react";
 import { SITE } from "@/lib/site";
-import { CATEGORIES } from "@/lib/catalogue";
+import GalleryMarquee from "./GalleryMarquee";
 
 const CHIPS: { label: string; cat: string }[] = [
   { label: "Laptops", cat: "laptops" },
@@ -29,65 +27,8 @@ const fadeUp = {
 };
 
 export default function Hero() {
-  const router = useRouter();
-  const [query, setQuery] = useState("");
-  const [open, setOpen] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Flatten all products for dropdown search
-  const allProducts = useMemo(
-    () =>
-      CATEGORIES.flatMap((c) =>
-        c.products.map((p) => ({ product: p, catKey: c.key, catLabel: c.label }))
-      ),
-    []
-  );
-
-  const dropdownResults = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    return allProducts
-      .filter(
-        ({ product: p }) =>
-          p.name.toLowerCase().includes(q) ||
-          p.brand.toLowerCase().includes(q) ||
-          p.desc.toLowerCase().includes(q)
-      )
-      .slice(0, 6);
-  }, [query, allProducts]);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && query.trim()) {
-      setOpen(false);
-      router.push(`/products?search=${encodeURIComponent(query.trim())}`);
-    }
-    if (e.key === "Escape") {
-      setOpen(false);
-      inputRef.current?.blur();
-    }
-  };
-
-  const handleSearch = () => {
-    if (query.trim()) {
-      setOpen(false);
-      router.push(`/products?search=${encodeURIComponent(query.trim())}`);
-    }
-  };
-
   return (
-    <section className="relative pt-12 sm:pt-16">
+    <section className="relative pt-5 sm:pt-7">
       <div className="container-x">
         {/* App-store style sub-pill */}
         <motion.div
@@ -108,7 +49,7 @@ export default function Hero() {
           custom={1}
           initial="hidden"
           animate="show"
-          className="mx-auto mt-6 max-w-4xl text-center text-[40px] font-extrabold leading-[1.04] tracking-[-0.02em] text-ink sm:text-[58px] lg:text-[68px]"
+          className="mx-auto mt-5 max-w-4xl text-center text-[34px] font-extrabold leading-[1.04] tracking-[-0.02em] text-ink sm:text-[48px] lg:text-[56px]"
         >
           Every computer & electronics
           <br className="hidden sm:block" /> need, sorted by{" "}
@@ -135,7 +76,7 @@ export default function Hero() {
           custom={2}
           initial="hidden"
           animate="show"
-          className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[14px] text-muted"
+          className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[14px] text-muted"
         >
           <span className="inline-flex items-center gap-1.5">
             <span className="flex">
@@ -154,93 +95,13 @@ export default function Hero() {
           <span>{SITE.hours}</span>
         </motion.div>
 
-        {/* Search card */}
+        {/* Suggestion chips — deep-link to category */}
         <motion.div
-          ref={containerRef}
           variants={fadeUp}
           custom={3}
           initial="hidden"
           animate="show"
-          className="relative mx-auto mt-8 max-w-2xl"
-        >
-          <div className="rounded-card border border-white/70 bg-white/90 p-3 shadow-card frosted">
-            <div className="flex items-center gap-3 px-3 py-3">
-              <Search className="h-5 w-5 shrink-0 text-muted" />
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  setOpen(true);
-                }}
-                onFocus={() => query && setOpen(true)}
-                onKeyDown={handleKeyDown}
-                placeholder='What are you looking for? — e.g. "gaming laptop"'
-                className="flex-1 bg-transparent text-[16px] text-ink placeholder:text-muted outline-none"
-              />
-              {query && (
-                <button
-                  onClick={() => { setQuery(""); setOpen(false); inputRef.current?.focus(); }}
-                  className="text-muted hover:text-ink"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-            <div className="flex items-center justify-between gap-2 px-1 pb-1">
-              <button onClick={handleSearch} className="btn-dark ml-auto">
-                Search <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Live dropdown */}
-          <AnimatePresence>
-            {open && dropdownResults.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-card border border-white/70 bg-white shadow-card"
-              >
-                {dropdownResults.map(({ product: p, catLabel }, i) => (
-                  <Link
-                    key={p.name + p.brand + i}
-                    href={`/products?search=${encodeURIComponent(p.name)}`}
-                    onClick={() => { setOpen(false); setQuery(""); }}
-                    className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-card"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <div className="truncate text-[14px] font-semibold text-ink">
-                        {p.brand} {p.name}
-                      </div>
-                      <div className="text-[12px] text-muted">{catLabel}</div>
-                    </div>
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0 text-muted" />
-                  </Link>
-                ))}
-                <div className="border-t border-line px-4 py-2.5">
-                  <button
-                    onClick={handleSearch}
-                    className="text-[13px] font-semibold text-accent-deep hover:underline"
-                  >
-                    See all results for &ldquo;{query}&rdquo; →
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Suggestion chips — deep-link to category */}
-        <motion.div
-          variants={fadeUp}
-          custom={4}
-          initial="hidden"
-          animate="show"
-          className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2"
+          className="mx-auto mt-5 flex max-w-4xl flex-wrap items-center justify-center gap-2"
         >
           {CHIPS.map((chip) => (
             <Link
@@ -253,6 +114,17 @@ export default function Hero() {
           ))}
         </motion.div>
       </div>
+
+      {/* Store photo loop — the hero's centrepiece, full-bleed */}
+      <motion.div
+        variants={fadeUp}
+        custom={4}
+        initial="hidden"
+        animate="show"
+        className="mt-7"
+      >
+        <GalleryMarquee />
+      </motion.div>
     </section>
   );
 }

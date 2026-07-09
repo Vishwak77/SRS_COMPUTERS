@@ -8,16 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand accent — electric cyan. Punchier + a darker `deep` so accent
+        // Brand accent — vibrant orange. Punchy DEFAULT + a darker `deep` so accent
         // text/links read as vibrant (and legible) on the near-white background.
         accent: {
-          DEFAULT: "#00F2FF",
-          soft: "#66F5FF",
-          deep: "#00C2E0",
-          glow: "#B4F8FF",
+          DEFAULT: "#FF6A00",
+          soft: "#FF9A4D",
+          deep: "#E0570A",
+          glow: "#FFD8B0",
         },
         teal: {
-          bar: "#1E555F", // dark-teal announcement bar
+          bar: "#7C3A12", // dark burnt-orange announcement bar
         },
         ink: {
           DEFAULT: "#10171D", // near-black headings
@@ -48,7 +48,7 @@ const config: Config = {
         nav: "0 8px 30px -8px rgba(16, 23, 29, 0.12), 0 2px 8px -2px rgba(16, 23, 29, 0.06)",
         card: "0 18px 50px -20px rgba(16, 23, 29, 0.18)",
         soft: "0 10px 40px -15px rgba(16, 23, 29, 0.12)",
-        glow: "0 8px 32px -3px rgba(0, 242, 255, 0.7)",
+        glow: "0 8px 32px -3px rgba(255, 106, 0, 0.5)",
       },
       maxWidth: {
         container: "1200px",
