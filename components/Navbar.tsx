@@ -25,7 +25,7 @@ export default function Navbar() {
   return (
     <>
       {/* Announcement / promo bar */}
-      <div className="relative z-40 bg-teal-bar text-center text-[13.5px] text-white">
+      <div className="relative z-40 bg-[#0a1f4d] text-center text-[13.5px] text-white">
         <div className="container-x flex items-center justify-center gap-2 py-2">
           <span className="font-semibold">Now open in Perambalur</span>
           <Link
@@ -62,8 +62,8 @@ export default function Navbar() {
             onMouseLeave={() => setMenuOpen(false)}
             className={`relative mx-auto flex items-center justify-between rounded-pill border border-white/60 px-2.5 py-2 pl-3 transition-all duration-300 sm:px-3 sm:pl-4 ${
               scrolled
-                ? "frosted bg-white/70 shadow-nav"
-                : "bg-white/85 shadow-nav"
+                ? "frosted bg-white/95 shadow-nav"
+                : "bg-white shadow-nav"
             }`}
           >
             <Logo />

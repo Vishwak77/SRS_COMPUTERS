@@ -1,3 +1,4 @@
+import HeroBanner from "@/components/home/HeroBanner";
 import Hero from "@/components/home/Hero";
 import ShowcaseReveal from "@/components/home/ShowcaseReveal";
 import Stats from "@/components/home/Stats";
@@ -10,6 +11,7 @@ import FinalCTA from "@/components/home/FinalCTA";
 export default function Home() {
   return (
     <>
+      <HeroBanner />
       <Hero />
       <ShowcaseReveal />
       <Stats />
