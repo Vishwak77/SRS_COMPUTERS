@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import PageHero from "@/components/PageHero";
 import BrowseProducts from "@/components/BrowseProducts";
 import Gallery from "@/components/Gallery";
-import LogoMarquee from "@/components/home/LogoMarquee";
 import FinalCTA from "@/components/home/FinalCTA";
 
 export const metadata = {
@@ -34,18 +33,6 @@ export default function ProductsPage() {
       </section>
 
       <Gallery />
-
-      <section id="brands" className="relative scroll-mt-28 pt-4">
-        <div className="container-x">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">Brands we carry</p>
-            <h2 className="mt-3 text-[30px] font-extrabold leading-tight tracking-[-0.02em] text-ink sm:text-[40px]">
-              Genuine products, trusted names
-            </h2>
-          </div>
-        </div>
-      </section>
-      <LogoMarquee />
 
       <FinalCTA />
     </>

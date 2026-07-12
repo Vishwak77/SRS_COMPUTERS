@@ -2,17 +2,16 @@
 
 import Image from "next/image";
 import Reveal from "./Reveal";
-
-// Real in-store photos from public/gallery (store-01 … store-10).
-const PHOTOS = Array.from({ length: 10 }, (_, i) => ({
-  src: `/gallery/store-${String(i + 1).padStart(2, "0")}.jpeg`,
-  alt: `Inside SRS Computers, Perambalur — shelf ${i + 1}`,
-}));
+import { ALL_PHOTOS as PHOTOS } from "@/lib/gallery";
 
 // Masonry-ish spans for visual rhythm (mirrors the reference's collage gallery).
+// First five entries cover the CP Plus photos; the portrait ones get tall tiles.
 const SPANS = [
+  "row-span-2", "", "row-span-2", "", "row-span-2",
   "row-span-2", "", "", "row-span-2", "", "row-span-2",
-  "", "", "row-span-2", "",
+  // Last entry is the square shop poster: only give it a tall tile from sm up,
+  // so a narrow phone column doesn't leave big empty bars around it.
+  "", "", "row-span-2", "sm:row-span-2",
 ];
 
 export default function Gallery() {
@@ -45,7 +44,11 @@ export default function Gallery() {
                   fill
                   unoptimized
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className={`transition-transform duration-700 group-hover:scale-105 ${
+                    photo.fit === "contain"
+                      ? "bg-white object-contain p-1.5"
+                      : "object-cover"
+                  }`}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>

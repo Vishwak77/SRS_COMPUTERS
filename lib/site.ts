@@ -23,11 +23,14 @@ export const SITE = {
   hours: "Open all week · 10:00 AM – 9:00 PM",
 };
 
+// An explicit "Home" link, because many customers won't think to click the logo.
 export const NAV_LINKS = [
+  { label: "Home", href: "/" },
   { label: "Products", href: "/products", hasMenu: true },
+  // Anchors the packages section on the home page.
+  { label: "Packages", href: "/#packages" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Brands", href: "/brands" },
   { label: "Gallery", href: "/gallery" },
   { label: "Visit Us", href: "/contact" },
 ];
@@ -55,25 +58,6 @@ export const PRODUCT_MENU = [
   ],
 ];
 
-// Brand wordmarks shown in the marquee / logo wall — the real names SRS stocks.
-export const BRANDS = [
-  "Dell",
-  "HP",
-  "Lenovo",
-  "ASUS",
-  "Acer",
-  "Canon",
-  "Epson",
-  "Brother",
-  "Hikvision",
-  "CP Plus",
-  "TP-Link",
-  "Logitech",
-  "Zebronics",
-  "Samsung",
-  "SanDisk",
-  "APC",
-];
 
 export const STATS = [
   { value: 15000, suffix: "+", label: "Customers served" },

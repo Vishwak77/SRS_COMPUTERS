@@ -6,12 +6,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Phone, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
+import { useHashNav } from "./HashScroll";
 import { NAV_LINKS, PRODUCT_MENU, SITE } from "@/lib/site";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false); // products mega-menu
   const [mobileOpen, setMobileOpen] = useState(false);
+  const hashNav = useHashNav();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -37,7 +39,25 @@ export default function Navbar() {
 
       {/* Floating pill nav */}
       <header className="sticky top-0 z-40">
-        <div className="container-x pt-3">
+        {/* The pill floats with a gap above and beside it, so scrolling content
+            used to peek through that gap and get sliced by the viewport edge.
+            BackgroundGradient is `fixed`, so the page colour at the very top is
+            always #ffd2ac — fading that same colour out behind the pill hides
+            the passing text without showing a seam. Only needed once scrolled. */}
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-x-0 top-0 h-[96px] transition-opacity duration-300 sm:h-[108px] ${
+            scrolled ? "opacity-100" : "opacity-0"
+          }`}
+          style={{
+            background:
+              "linear-gradient(to bottom, #ffd2ac 0%, #ffd2ac 58%, rgba(255,210,172,0.55) 80%, rgba(255,210,172,0) 100%)",
+          }}
+        />
+        {/* The pill carries 7 links + search + two CTAs, which don't fit inside
+            the 1200px content column. It's a floating pill, so let it run a
+            little wider than the page container from xl up. */}
+        <div className="relative container-x pt-3 xl:max-w-[1320px]">
           <motion.nav
             onMouseLeave={() => setMenuOpen(false)}
             className={`relative mx-auto flex items-center justify-between rounded-pill border border-white/60 px-2.5 py-2 pl-3 transition-all duration-300 sm:px-3 sm:pl-4 ${
@@ -50,7 +70,7 @@ export default function Navbar() {
 
             {/* Center links — in-flow (not absolutely centered) so the search
                 field in the right group can't overlap them. */}
-            <ul className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+            <ul className="hidden flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">
               {NAV_LINKS.map((link) => (
                 <li
                   key={link.label}
@@ -59,7 +79,8 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`inline-flex items-center gap-1 whitespace-nowrap rounded-pill px-2.5 py-1.5 text-[14.5px] font-medium transition-colors hover:bg-ink/[0.04] hover:text-ink xl:px-3 ${
+                    onClick={hashNav(link.href)}
+                    className={`inline-flex items-center gap-1 whitespace-nowrap rounded-pill px-2 py-1.5 text-[14px] font-medium transition-colors hover:bg-ink/[0.04] hover:text-ink xl:px-2.5 xl:text-[14.5px] ${
                       link.hasMenu && menuOpen ? "bg-ink/[0.04] text-ink" : "text-ink/80"
                     }`}
                   >
@@ -131,8 +152,9 @@ export default function Navbar() {
             {/* Right CTAs */}
             <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
               {/* Nav pill is width-capped by container-x, so this can't grow at
-                  wider viewports — 6 links + CTA leave no slack. */}
-              <SearchBar className="hidden w-[150px] xl:block" />
+                  wider viewports — 7 links + CTA leave no slack. Keep the field
+                  narrow at xl and only give it room once the links have some. */}
+              <SearchBar className="hidden w-[124px] xl:block 2xl:w-[150px]" />
               <a
                 href={`tel:${SITE.phone}`}
                 className="hidden items-center gap-2 rounded-pill px-3.5 py-2 text-[15px] font-semibold text-ink/80 transition-colors hover:bg-ink/[0.04] sm:inline-flex"
@@ -188,7 +210,10 @@ export default function Navbar() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => {
+                      hashNav(link.href)(e);
+                      setMobileOpen(false);
+                    }}
                     className="block rounded-2xl px-4 py-3 text-[16px] font-semibold text-ink hover:bg-surface-card"
                   >
                     {link.label}

@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import BackgroundGradient from "@/components/BackgroundGradient";
 import ScrollProgress from "@/components/ScrollProgress";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import HashScroll from "@/components/HashScroll";
 
 const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -32,6 +33,8 @@ export default function RootLayout({
         <BackgroundGradient />
         <ScrollProgress />
         <SmoothScroll>
+          {/* Inside SmoothScroll so it can reach the Lenis instance. */}
+          <HashScroll />
           <Navbar />
           <main className="relative z-10">{children}</main>
           <Footer />
